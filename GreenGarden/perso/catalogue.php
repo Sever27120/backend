@@ -1,6 +1,7 @@
-<?php include 'header.php';?>
- <h1>Catalogue</h1>
-    
+<?php include 'header.php'; ?>
+
+<h1>Catalogue</h1>
+
 <body>
     <form method="post" action="">
         <label for="search_term">Rechercher un produit:</label>
@@ -8,7 +9,7 @@
         <input type="submit" name="search" value="Rechercher">
     </form>
 
-   
+
 
     <?php
     $host = "localhost";
@@ -31,21 +32,22 @@
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             echo "<p>Résultats de recherche pour : " . $search_term . "</p>";
-          
+
             while ($row = $stmt->fetch()) {
                 echo "<div class='card'>";
-                echo "<div class='row g-0'></div>";
-                echo "<div class='col-5 col-sm-4'></div>";
-                echo "<img class='img_fluid w-100' alt='image produit'scr={$row['Image']}</div>";
-                echo "<div class='col-7 col-sm-8'><div>";
-                echo "<div class='card-body'><div>";
-                echo "<div class='card-title'>{$row['Nom_court']}</div>";
-                echo "<div class='card-text'>{$row['Prix_Achat']}€</div>";
-                echo "<div input class='ajouter' type='text' name='ajouter'></div>";
-                echo "</div>";
-            }
-           
+                echo "<a href='consult_produit.php?id={$row['Id_Produit']}'>";
 
+                echo "<img class='card-photo'src='img/{$row['Photo']}'>";
+
+                echo "<div class='card-title'>{$row['Nom_court']}</div>";
+                echo "<div class='card-text'>{$row['Prix_Achat']} €</div>";
+
+                echo "<input class='ajouter' type='submit' value='Ajouter'>";
+
+                echo "</div>";
+
+                echo "</a>";
+            }
         }
     } else {
         $sql = "select * from t_d_produit";
@@ -54,22 +56,25 @@
         if ($stmt->rowCount() > 0) {
             echo "<ul>";
             while ($row = $stmt->fetch()) {
+
+
                 echo "<div class='card'>";
-                echo "<div class='row g-0'></div>";
-                echo "<div class='col-5 col-sm-4'></div>";
-                echo "<img class='img_fluid w-100' alt='image produit'scr={$row['Image']}</div>";
-                echo "<div class='col-7 col-sm-8'><div>";
-                echo "<div class='card-body'><div>";
-                echo "<div class='card-title'>{$row['Nom_court']}</div>";
-                echo "<div class='card-text'>{$row['Prix_Achat']}€</div>";
-                echo "<div input class='ajouter' type='text' name='ajouter'></div>";
+                echo "<a href='consult_produit.php?id={$row['Id_Produit']}'>";
+
+                echo "<img class='card-photo' src='img/{$row['Photo']}'>";
+
+                echo "<div class='card-title'>" . $row['Nom_court'] . "</div>";
+                echo "<div class='card-text'>{$row['Prix_Achat']} €</div>";
+
+                echo "<input class='ajouter' type='submit' value='Ajouter'>";
+
                 echo "</div>";
+
+                echo "</a>";
+            }
         }
     }
-}
 
     ?>
 
-<?php include 'footer.php'; ?>
-</html>
-
+    <?php include 'footer.php'; ?>

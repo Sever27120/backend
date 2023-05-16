@@ -1,7 +1,49 @@
-*{
-    background-color: aquamarine;
+body{
+    background-color: rgb(20, 150, 107);
+    font-family: 'Pacifico', cursive;
 }
 
 .promo{
     text-align: center;
+}
+
+.card-photo{
+    width: 200px;
+}
+
+.card-title{
+    align-content: center;
+    padding-left: 600px;
+}
+
+
+.card-text{
+    padding-left: 900px;
+}
+
+.ajouter{
+    margin-left:1500px;
+}
+
+.header{
+    align-content: center;
+}
+
+.btn{
+    align-content: center;
+    color:white;
+}
+
+form{
+    text-align:center;
+    margin-top: 50px;
+}
+
+h1{
+    text-align: center;
+}
+
+.vedette{
+
+    width: 30%;
 }
