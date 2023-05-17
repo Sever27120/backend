@@ -36,6 +36,12 @@
         <li class="nav-item">
           <a class="nav-link " href="ajout_produit.php" >Ajout Produit</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " href="ajout_fournisseur.php" >Ajout Fournisseur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="ajout_categorie.php" >Ajout Catégorie</a>
+        </li>
       </ul>
       
     </div>
