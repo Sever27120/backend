@@ -1,13 +1,12 @@
 <?php
-include 'header.php';
+session_start();
 
 
 if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit();
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-// Vérification si le formulaire a été soumis
+
 $login = $_POST["login"];
 $password = $_POST["password"];
 
@@ -31,18 +30,13 @@ if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user_id'] = $user['Id_User'];
 
     //pour récupérer le user type faire une requete sur la table t_d_usertype
-    $stmt = $conn->prepare('SELECT * FROM t_d_usertype WHERE Id_UserType=:Id_UserType');
-    $stmt->bindValue(':Id_UserType', $user['Id_UserType']);
-    $stmt->execute();
-    $useType = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $_SESSION['user_type'] = $useType['Libelle'];
 
 
     header('Location: index.php');
     exit();
 }
-}
+
 
 
 ?>

@@ -27,6 +27,8 @@ require 'functions.php'; ?>
 
   <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
   <label class="btn btn-outline-primary" for="btncheck7"></label>
+
+ 
 </div>
 
 <div class="promo">
