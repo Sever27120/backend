@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include 'header.php';//insérer son header dans la page
 require 'functions.php';
 
 // Récupération des informations de l'utilisateur connecté

@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mon panier</title>
-</head>
 
-<body>
+	<!-- Header -->
+	<?php include 'header.php'; ?>
 
-	<h1>Mon panier</h1>
+	<h1 class="styleTitre">Mon panier</h1>
 
 	<?php
-	 include 'header.php';
-	session_start();
+	// Démarrage de la session
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+
 	// Récupération des informations de l'utilisateur connecté
 	$host = "localhost"; // Nom d'hôte de la base de données
 	$user = "root"; // Nom d'utilisateur de la base de données
@@ -28,7 +34,8 @@
 
 		if (isset($_SESSION['panier'])) {
 			echo "<table>";
-			echo "<tr><th>Produit</th><th>Prix unitaire</th><th>Quantité</th><th>Prix total</th></tr>";
+			echo "<tr><th>Produit</th><th>Prix unitaire HT</th><th>Prix unitaire TTC</th><th>Quantité</th>
+			<th>Prix total HT</th><th>Prix total TTC</th></tr>";
 			foreach ($_SESSION['panier'] as $productid => $quantity) {
 				$id = $productid;
 
@@ -39,15 +46,16 @@
 
 				$name = $produit['Nom_court'];
 				$priceht = $produit['Prix_Achat'];
-				$pricettc = $priceht  * (1 + $produit['Taux_TVA'] / 100);
+				$pricettc = round($priceht  * (1 + $produit['Taux_TVA'] / 100));
 
 				$total_productht = $priceht * $quantity;
-				$total_productttc = $pricettc * $quantity;
+				$total_productttc = round($pricettc * $quantity);
 				$totalHT += $total_productht;
 				$totalTTC += $total_productttc;
 				echo "<tr><td>{$name}</td><td>{$priceht} € HT</td><td>{$pricettc} € TTC</td>
 				<td>{$quantity}</td><td>{$total_productht} € HT</td><td>{$total_productttc} € TTC</td></tr>";
 			}
+			$totalTTC=round($totalTTC);
 			echo "</table>";
 			echo "<p>Total HT : {$totalHT} €</p>";
 			echo "<p>Total TTC : {$totalTTC} €</p>";
@@ -59,8 +67,9 @@
 	}
 	?>
 
-	<p><a href="consult_produit.php">Continuer mes achats</a></p>
+	<p><a href="catalogue.php">Continuer mes achats</a></p>
 
-</body>
+	<p><a href="validation_panier.php">Valider</a></p>
 
-</html>
+	<!-- Footer -->
+	<?php include 'footer.php'; ?>
