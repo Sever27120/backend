@@ -32,6 +32,8 @@
 		$totalHT = 0;
 		$totalTTC = 0;
 
+	
+
 		if (isset($_SESSION['panier'])) {
 			echo "<table>";
 			echo "<tr><th>Produit</th><th>Prix unitaire HT</th><th>Prix unitaire TTC</th><th>Quantité</th>

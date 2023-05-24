@@ -61,9 +61,11 @@
         $produit = $p->getProductsByName( '%' . $search_term . '%');
 
         // if ($stmt->rowCount() > 0) {
+
+            //dés que dans la barre de recherche un produits est écrit
         if (count($produit) > 0) {
             echo "<p>Résultats de la recherche pour : " . $search_term . "</p>";
-
+//chercher les information dans la base de donnée
             foreach ($produit as $row) {
                 // while ($row = $stmt->fetch()) {
                 echo "<a class='CardProduit' target='_blank' href='consult_produit.php?id={$row['Id_Produit']}'>";
@@ -88,10 +90,10 @@
     } else {
         // $sql = "select * from t_d_produit";
         // $stmt = $conn->query($sql);
-
+//sélectionner les informations de la  table produit dan sla classe produit dans table produit.php
         $p = new Produit();
         $produit = $p->getAllProduits();
-
+// chercher le produit 
         foreach ($produit as $row) {
             // if ($stmt->rowCount() > 0) {
             //     while ($row = $stmt->fetch()) {
