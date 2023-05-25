@@ -25,5 +25,4 @@ déclenché avec l'appel du gabarit qui reprend les valeurs de $titre et de $con
 
 <?php endforeach; ?> 
 <?php $contenu = ob_get_clean(); ?>
-
-<?php require 'gabarit.php'; ?>
+<!-- <?php echo $contenu; ?> ne pas mettre require gabarit.php car sinon doublon -->

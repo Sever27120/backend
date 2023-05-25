@@ -19,12 +19,12 @@
  <p><?php echo $commentaire['contenu'] ?></p>
 <?php endforeach; ?>
 <?php $contenu = ob_get_clean(); ?>
-<?php require 'gabarit.php'; ?>
+<!-- <?php echo $contenu; ?> ne pas mettre require gabarit.php car sinon doublon -->
 
 <!-- cette vue ne définit que ses éléments particuliers, le reste est géré par le gabarit 
 (dernière ligne) -->
 
-<form method="post"action="index.php?action=commenter">
+<form method="post" action="index.php?action=billet&add=commenter">
  <input id="auteur" name="auteur" type="text" placeholder="Votre pseudo"
  required /><br />
  <textarea id="txtCommentaire" name="contenu" rows="4"

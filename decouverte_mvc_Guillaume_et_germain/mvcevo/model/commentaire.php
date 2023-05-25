@@ -15,8 +15,7 @@ class commentaire extends Model
     public function ajouterCommentaire($auteur, $contenu, $idBillet)
     {
         $sql = 'insert into T_COMMENTAIRE(COM_DATE, COM_AUTEUR, COM_CONTENU,
-BIL_ID)'
-            . ' values(?, ?, ?, ?)';
+BIL_ID)  values(?, ?, ?, ?)';
         $date = date("Y-m-d H:i:s"); // Récupère la date courante
         $this->executerRequete($sql, array($date, $auteur, $contenu, $idBillet));
     }
