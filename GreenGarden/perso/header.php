@@ -31,7 +31,7 @@
             </li>
             <?php 
 
-            // Pour indiquer sur la barre de navigation quand c'est un utilisateur administrateur ou commercial
+            // Pour indiquer sur la barre de navigation quand c'est un utilisateur administrateur ou commercial se connecte 
             if (    isset($_SESSION['user_id']) && isset($_SESSION['user_type'])    
              && ($_SESSION['user_type'] == 'Commercial' || $_SESSION['user_type'] == 'Admin') ) {
               echo ' <li class="nav-item">
@@ -43,9 +43,34 @@
             echo ' <li class="nav-item">
               <a class="nav-link" href="ajout_categorie.php">Ajout Categorie</a>
             </li>';
+            echo ' <li class="nav-item">
+            <a class="nav-link" href="listeretour.php">Recherche des retours</a>
+          </li>';
+
             }
 
+            //Pour indiquer sur la barre de navigation quand c'est un utilisateur technicien SAV se connecte 
+
+            if( isset ($_SESSION['user_id']) && isset ($_SESSION['user_type'])
+            && ($_SESSION['user_type'] == 'Technicien SAV')){
+              echo ' <li class="nav-item">
+              <a class="nav-link" href="retour.php">Retour de la commande</a>
+            </li>';
+            echo ' <li class="nav-item">
+            <a class="nav-link" href="misajourretour.php">Mis à jour statut retour</a>
+          </li>';
+            }
+
+            // Pour indiquer sur la barre de navigation quand un utilisateur Client se connecte 
+            if( isset ($_SESSION['user_id']) && isset ($_SESSION['user_type'])
+            && ($_SESSION['user_type'] == 'Client')){
+            echo '<li class="nav-item">
+              <a class="nav-link " href="profilretour.php">Retour </a>
+            </li>';
+            }
             ?>
+
+          
           
             <li class="nav-item">
               <a class="nav-link " href="panier.php">Panier</a>
