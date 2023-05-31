@@ -14,9 +14,9 @@ ALTER TABLE `t_d_retour` ADD PRIMARY KEY (`Id_retour`);
 
 create table t_d_Technicien_SAV(Id_tech_SAV int(11) not null, nom_tech_SAV varchar(255) not null);
 
-INSERT INTO `t_d_Technicien_SAV`(`Id_tech_SAV`, `nom_tech_SAV`) VALUES
-(1, 'Bernard'),
-(2, 'Blanca');
+INSERT INTO `t_d_Technicien_SAV`(`Id_tech_SAV`, `nom_tech_SAV`,'Id_User') VALUES
+(1, 'LILI',20),
+(2, 'LULU',21);
 
 
 ALTER TABLE `t_d_Technicien_SAV` ADD PRIMARY KEY (`Id_tech_SAV`);

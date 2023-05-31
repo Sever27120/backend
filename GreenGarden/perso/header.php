@@ -57,7 +57,7 @@
               <a class="nav-link" href="retour.php">Retour de la commande</a>
             </li>';
             echo ' <li class="nav-item">
-            <a class="nav-link" href="misajourretour.php">Mis à jour statut retour</a>
+            <a class="nav-link" href="misajourretour.php">Mis à jour status des retours</a>
           </li>';
             }
 
