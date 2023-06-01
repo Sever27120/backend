@@ -35,17 +35,7 @@
    }
 
 
-
-
-
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-
-    
-
-
-
 
          // récupérer les informations du formulaire
          $cde_id = $_POST['numcom'];

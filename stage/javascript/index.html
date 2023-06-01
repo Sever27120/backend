@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recherche de ville</title>
+</head>
+<body>
+    <form id="searchForm">
+        <label for="city">Ville :</label>
+        <input type="text" id="city" name="city">
+        <input type="submit" value="Rechercher">
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+    var data = [];
+
+    // Charger les données depuis le fichier JSON
+    fetch('employees.json')
+    .then(response => response.json())
+    .then(jsonData => {
+        // Assigner les données à la variable 'data'
+        data = jsonData.data;
+
+        function search(city) {
+            let count = 0;
+            let maxSalary = 0;
+            let maxSalaryPerson = null;
+
+            for (let person of data) {
+                if (person.office === city) {
+                    count++;
+                    let salary = Number(person.salary.replace(/[^0-9.-]+/g,"")); // convertir le salaire en nombre
+                    if (salary > maxSalary) {
+                        maxSalary = salary;
+                        maxSalaryPerson = person;
+                    }
+                }
+            }
+
+            return {
+                count: count,
+                maxSalaryPerson: maxSalaryPerson
+            };
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // empêcher le rechargement de la page
+            let city = document.getElementById('city').value;
+            let result = search(city); // passer la ville à la fonction search
+            let resultsElement = document.getElementById('results');
+            resultsElement.innerHTML = `Il y a ${result.count} personnes qui travaillent à ${city}.`;
+            if (result.maxSalaryPerson) {
+                resultsElement.innerHTML += `<br>La personne qui gagne le plus est ${result.maxSalaryPerson.name} avec un salaire de ${result.maxSalaryPerson.salary}.`;
+            }
+        });
+    });
+    </script>
+</body>
+</html>

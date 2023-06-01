@@ -37,47 +37,32 @@ try {
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
-   // récupérer les informations du formulaire
-   $cde_id = $_POST['numcom'];
-   $statut_id = $_POST['statut'];
-
-
-      // insérer le ticket retour dans la base de données
-      $stmt = $pdo->prepare("INSERT INTO t_d_ticket_retour(
-         date_ticket,
-         id_statut, 
-         Id_Commande,
-         Id_retour,
-         Id_tech_SAV
-         ) VALUES (
-         :datetck,
-         :statutTicket,
-         :commande,
-         :retour,
-         :technicien
-         )");
-      $stmt->bindValue(':datetck', date("Y-m-d H:i:s"));
-      $stmt->bindValue(':statutTicket', 1);
-      $stmt->bindValue(':commande', $_POST['numcom']);
-      $stmt->bindValue(':retour', $_POST['motif_retour']);
-      $stmt->bindValue(':technicien', $_SESSION['user_id']);
-      $stmt->execute();
+$commande= $_POST['numcom'];
+   $nouvelle_valeur = $_POST['statut'];
+   
+   $sql = "UPDATE t_d_ticket_retour SET Id_statut = '$nouvelle_valeur' Where Id_Commande ='$commande'";
+   
+   if ($conn->query($sql) === TRUE) {
+       echo "Donnée mise à jour avec succès.";
+   } else {
+       echo "Erreur lors de la mise à jour de la donnée : ";
+   }
 
       $order_id = $pdo->lastInsertId();
 
 
        // rediriger vers la page d'acceuil
+
 header('Location: index.php');
 exit;
 
-}
 
+ }
 
 ?>
-?>
+
 
 <h1>Mis à jour du statut du retour d'une commande</h1>
 
@@ -101,7 +86,6 @@ exit;
          </select>
       </div>
 
-
       <br>
       <div>
          <label for="statut">Type statut </label>
@@ -111,7 +95,7 @@ exit;
 
               if ($stmt->rowCount() > 0) {
                  while ($row = $stmt->fetch()) {
-                    echo "<option value ='{$row['Id_statut']}'>" . $row['type_statut'] . "</option>";
+                    echo "<option value ='{$row['Id_type_statut']}'>" . $row['Type_statut'] . "</option>";
                  }
               }
               ?>
@@ -120,8 +104,8 @@ exit;
       <br>
 
 
-      <input id="button" type="submit" value="Créer ticket">
+      <input id="button" type="submit" value="Modifier">
 
 
 
-   include 'footer.php'; ?>
+  <?php include 'footer.php'; ?>

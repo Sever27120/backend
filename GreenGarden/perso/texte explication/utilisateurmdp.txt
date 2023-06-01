@@ -1,0 +1,30 @@
+Login pour les techniciens en SAV sont:
+
+LILI mot de passe LILI
+
+LULU mot de passe LULU 
+
+le reste des login porte le même nom et mot de passe
+
+technicien:
+
+retour.php
+
+pour créer un ticket retour
+
+misajourretour.php
+
+pour mettre à jour le statut du ticket retour
+
+commerciale:
+
+listeretour.php
+
+pour la liste des tickets de retour pour chaque commande
+
+client:
+
+profilretour.php
+
+pour la liste des tickets retour pour chaque commande et client.
+
